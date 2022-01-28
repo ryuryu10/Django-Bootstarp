@@ -1,8 +1,14 @@
+from typing import List
+from django.db import models
 from django.http import request
-from django.shortcuts import render
+from django.views.generic import ListView
 from .models import Post
 
-def index(request):
+class PostList(ListView):
+    model = Post
+    template_name = 'blog/index.html'
+
+'''def index(request):
     posts = Post.objects.all().order_by('-pk')
     return render(
         request,
@@ -11,7 +17,7 @@ def index(request):
             'posts': posts,
         }
     )
-
+'''
 def single_post_page(request, pk):
     post = Post.objects.get(pk=pk)
 
